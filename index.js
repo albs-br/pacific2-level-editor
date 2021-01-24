@@ -25,6 +25,8 @@ table.style.borderSpacing = "0px";
 table.style.borderPadding = "0px";
 table.style.border = "solid 1px lightgray";
 
+
+
 for (var i = 0; i < LINES; i++) {
   var tr = document.createElement("tr");
 
