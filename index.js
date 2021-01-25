@@ -7,10 +7,13 @@ const COLUMNS = 32;
 const LINES = 23;
 
 const borderMouseOver = "1px solid blue";
+const borderTileSelected = "2px solid red";
 
 const withBorder = "1px solid lightgray";
 const noBorder = "1px solid white";
 let currentBorder = withBorder;
+
+let currentTile = "";
 
 var table = document.createElement("table");
 table.style.borderSpacing = "0px";
@@ -28,16 +31,17 @@ for (var i = 0; i < LINES; i++) {
     td.addEventListener("mouseover", function() {
       $(this).css({
         border: borderMouseOver
-      }); 
+      });
     });
     td.addEventListener("mouseout", function() {
       $(this).css({
         border: currentBorder
-      }); 
+      });
     });
     td.addEventListener("click", function() {
       this.style.backgroundColor = "red";
-      this.style.border = "0px solid green";
+      //this.style.border = "0px solid green";
+      $(this).css("background-image", "url(" + currentTile + ")");
     });
     //var text = document.createTextNode('');
     //td.appendChild(text);
@@ -59,5 +63,14 @@ document.all["chkGrid"].addEventListener("click", function() {
 
   $("td").css({
     border: currentBorder
-  });  
+  });
 });
+
+$("#tiles")
+  .children("img")
+  .click(event => {
+    currentTile = event.currentTarget.src;
+    $(event.currentTarget).css({
+      border: borderTileSelected
+    });
+  });
