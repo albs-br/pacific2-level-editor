@@ -1,4 +1,6 @@
-// Import stylesheets
+// Level editor for PAcific 2 game for MSX computers
+// v.0.3.0
+
 import "./style.css";
 
 const appDiv = document.getElementById("app");
@@ -13,7 +15,12 @@ const withBorder = "1px solid lightgray";
 const noBorder = "1px solid white";
 let currentBorder = withBorder;
 
-let currentTile = "";
+let currentTile = {
+  number: null,
+  src: ""
+};
+
+let matrix = [LINES][COLUMNS];
 
 var table = document.createElement("table");
 table.style.borderSpacing = "0px";
@@ -41,10 +48,14 @@ for (var i = 0; i < LINES; i++) {
     td.addEventListener("click", function() {
       this.style.backgroundColor = "red";
       //this.style.border = "0px solid green";
-      $(this).css("background-image", "url(" + currentTile + ")");
+      $(this).css("background-image", "url(" + currentTile.src + ")");
     });
     //var text = document.createTextNode('');
     //td.appendChild(text);
+    td.column = j;
+    td.line = i;
+    matrix[i][j] = null;
+
     tr.appendChild(td);
   }
 
@@ -69,8 +80,13 @@ document.all["chkGrid"].addEventListener("click", function() {
 $("#tiles")
   .children("img")
   .click(event => {
-    currentTile = event.currentTarget.src;
+    currentTile.number = event.currentTarget.tilenumber;
+    currentTile.src = event.currentTarget.src;
     $(event.currentTarget).css({
       border: borderTileSelected
     });
   });
+
+$("#btn").click(() => {
+  $("#output").text("sdfsdfaf");
+});
