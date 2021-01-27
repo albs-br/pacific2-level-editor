@@ -1,5 +1,5 @@
 // Level editor for PAcific 2 game for MSX computers
-// v.0.3.0
+// v.0.4.0
 
 import "./style.css";
 
@@ -20,7 +20,8 @@ let currentTile = {
   src: ""
 };
 
-let matrix = [LINES][COLUMNS];
+//let matrix = [LINES][COLUMNS];
+let matrix = Array.from(Array(LINES), () => new Array(COLUMNS));
 
 var table = document.createElement("table");
 table.style.borderSpacing = "0px";
